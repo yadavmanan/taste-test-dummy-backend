@@ -39,7 +39,8 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="Cultural Fit Stress Tester", version="0.1.0", lifespan=lifespan)
+# No cookies or auth headers are used, so any origin may call the API.
 app.add_middleware(
-    CORSMiddleware, allow_origins=get_settings().allowed_origins, allow_methods=["*"], allow_headers=["*"],
+    CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"],
 )
 app.include_router(router)
